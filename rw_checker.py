@@ -58,7 +58,8 @@ def check():
         print(output)
  
 def notify():
-    print(run_command("termux-notification -t 'Tickets available!' -c 'Check website' --sound got.ogg"))
+    print(run_command("termux-notification -t 'Tickets available!' -c 'Check website'"))
+    playsound('got.ogg')
     #termux.notification("Tickets available!", "Check website")
 
 def run_command(command):
