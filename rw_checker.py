@@ -48,6 +48,7 @@ def check():
         i = t.find('i', {'class': 'quantity-tag svg-tag-special'})
         if not i:
             output += ' ( ✅ ) '
+            notify()
         else:
             output += ' ( ♿ ) '
         span_price = t.find('span', {'class': 'js-price'})
@@ -58,9 +59,9 @@ def check():
         print(output)
  
 def notify():
-    print(run_command("termux-notification -t 'Tickets available!' -c 'Check website'"))
-    playsound('got.ogg')
-    #termux.notification("Tickets available!", "Check website")
+    if datetime.datetime.now().hour >= 7 & datetime.datetime.now().hour <= 23:
+        print(run_command("termux-notification -t 'Tickets available!' -c 'Check website'"))
+        playsound('got.ogg')
 
 def run_command(command):
     process = subprocess.Popen(command, shell=True,
@@ -73,7 +74,6 @@ schedule.every(1).minutes.do(check)
 
 while True: 
     schedule.run_pending() 
-    notify()
     time.sleep(1)
 
 #print(temp)
