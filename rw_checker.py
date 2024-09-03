@@ -4,6 +4,7 @@ import schedule
 import time 
 from playsound import playsound 
 import datetime
+import subprocess
 
 
 import termux as termux
@@ -57,7 +58,7 @@ def check():
         print(output)
  
 def notify():
-    run_command("termux-notification -t 'Tickets available!' -c 'Check website --sound got.ogg'")
+    print(run_command("termux-notification -t 'Tickets available!' -c 'Check website --sound got.ogg'"))
     #termux.notification("Tickets available!", "Check website")
 
 def run_command(command):
